@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-72.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-120.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-128.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-144.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-152.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-192.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-384.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+    <meta name="theme-color" content="#db4938" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.3/jspdf.plugin.autotable.min.js"></script>
+
+    <title>Dar chiq</title>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <h1>Dar Chiq</h1>
+        <ul>
+          <li>Home</li>
+        </ul>
+      </nav>
+      <div class="container"></div>
+    </main>
+    <div class="parent">
+      <p>Informations Client</p>
+      <div>
+        <input id="dt" type="date">
+        <input id="FD" type="text" class="input" placeholder="Devis ou Facture numero" required />
+        <input id="clientinfo" type="text" class="input" placeholder="Nom du client" required />
+        <input id="teleClient" type="tel" class="input" placeholder="Telephone" />
+        <input type="text" class="input" placeholder="Adresse du client" />
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Quantité</th>
+            <th>Prix unitaire</th>
+            <th>Total HT</th>
+          </tr>
+        </thead>
+        <body>
+          <tr>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+              </span>
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable" 
+              >
+                1</span
+              >
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+                0,00 MAD</span
+              >
+            </td>
+            <td>
+              <span class="fin" contenteditable="true" placeholder="descripton"> MAD</span>
+              
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+              </span>
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable" 
+              >
+                1</span
+              >
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+                0,00 MAD</span
+              >
+            </td>
+            <td>
+              <span class="fin" contenteditable="true" placeholder="descripton"> MAD</span>
+              
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+              </span>
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable" 
+              >
+                1</span
+              >
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+                0,00 MAD</span
+              >
+            </td>
+            <td>
+              <span class="fin" contenteditable="true" placeholder="descripton"> MAD</span>
+              
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+              </span>
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable" 
+              >
+                1</span
+              >
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+                0,00 MAD</span
+              >
+            </td>
+            <td>
+              <span class="fin" contenteditable="true" placeholder="descripton"> MAD</span>
+              
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+              </span>
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable" 
+              >
+                1</span
+              >
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+                0,00 MAD</span
+              >
+            </td>
+            <td>
+              <span class="fin" contenteditable="true" placeholder="descripton"> MAD</span>
+              
+            </td>
+          </tr>
+          
+        </body>
+      </table>
+      <div>
+        <span class="add">add line</span>
+      </div>
+      <table id="balance">
+        <tr>
+            <th><span contenteditable>Total HT</span></th>
+            <td><span contenteditable>0.00</span> DH</td>
+        </tr>
+        <tr>
+            <th><span contenteditable>TVA</span></th>
+            <td><span contenteditable>0.00</span> DH</td>
+        </tr>
+        <tr>
+            <th><span contenteditable>Total TTC </span></th>
+            <td><span contenteditable>0.00</span> DH</td>
+        </tr>
+    </table>
+      
+    </div>
+    <button id="generate" type="submit">Telecharger PDF</button>
+
+    <script>
+      var elem = document.getElementById("generate");
+      elem.onclick = function () {
+        var doc = new jsPDF();
+        //get client info 
+        var date =document.getElementById("dt").value
+        function convertDigitIn(date){
+            return date.split('/').reverse().join('/');
+            }
+        var DF = document.getElementById('FD').value
+        var nomClient= document.getElementById('clientinfo').value
+        var teleClient = document.getElementById('teleClient').value
+
+        // logo 
+        var img = new Image();
+        img.src = "images/logo.png";
+        doc.addImage(img, "png", 10, 10, 50.27, 32.9);
+        // text Devis 
+        doc.setTextColor("#573a6f");
+        doc.setFontSize(20);
+        doc.text(140, 20, DF);
+        doc.setFontSize(12);
+        doc.text(140, 25, date);
+
+        // dar chiq information 
+        doc.setTextColor("#000000");
+        doc.setFontSize(14);
+        doc.text(15,50,'DAR CHIQ')
+        //adress
+        doc.setFontSize(12);
+        doc.text(15,57,'20 adress bormana ')
+        // tele
+        doc.setFontSize(12);
+        doc.text(15,65,'0535704455 ')
+        //nom de client 
+        doc.setFontSize(12);
+        doc.text(140,50, nomClient)
+        // tele de client 
+        doc.setFontSize(12);
+        doc.text(140,57,teleClient)
+
+
+        doc.autoTable( {
+            theme:'plain',
+            margin: { top: 80 },
+            body:[
+                [
+                    {
+                        content: ""
+                    }
+                ]
+            ]
+            
+            
+        })
+
+
+
+
+
+
+
+      
+
+        doc.autoTable({
+          html: "table",
+          styles: {},
+          headerStyles: {fillColor: "#573a6f", halign: "center",
+              valign: "middle"},
+        bodyStyles:{ halign: "center",
+              valign: "middle",textColor:"#000"},
+
+            
+          margin: { top: 10 , },
+          fontSize: (number = 12),
+        });
+        doc.autoTable( {
+
+            theme:'plain',
+            styles: {},
+            fillColor: "#573a6f",
+            fontSize: (number = 12),
+            
+            margin: { top: 100 },
+            body:[
+                [
+                    {
+                        content: "",
+                        styles: {},
+                        
+                        
+                    }
+                ]
+            ]
+            
+            
+            
+            
+        })
+        
+
+        doc.autoTable({
+          html: "#balance",
+          styles: {},
+          margin:{top: 100, right: 0, bottom: 0, left: 95},
+
+        
+          tableWidth:100,
+          fontSize: (number = 14),
+         
+        bodyStyles:{ halign: "center",
+              valign: "middle",textColor:"#000"},
+          
+        });
+
+        doc.save(nomClient +"-"+ DF +".pdf");
+      };
+
+
+    </script>
+  </body>
+</html>

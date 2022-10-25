@@ -1,0 +1,374 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-72.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-120.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-128.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-144.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-152.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-192.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-384.png" />
+    <link rel="apple-touch-icon" href="images/Plugin icon - 1-512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+    <meta name="theme-color" content="#db4938" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.2.3/jspdf.plugin.autotable.min.js"></script>
+
+    <title>Dar chiq</title>
+    <style>
+        .add, .cut
+{
+	border-width: 1px;
+	display: block;
+	font-size: 1rem;
+	padding: 0.3em 0.5em;	
+	float: left;
+	text-align: center;
+	width: .6em;
+}
+.cut{
+    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    background-color: rgb(223, 9, 9);
+	border-radius: 0.5em;
+	border-color: #380206;
+	color: #FFF;
+	cursor: pointer;
+	font-weight: bold;
+	text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
+}
+.add 
+{
+	
+	box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    background-color: #025;
+	border-radius: 0.5em;
+	border-color: #0076A3;
+	color: #FFF;
+	cursor: pointer;
+	font-weight: bold;
+    
+	text-shadow: 0 -1px 2px rgba(0,0,0,0.333);
+}
+
+.add { margin: -2.5em 0 0; }
+
+.add:hover { background-color: #040615; }
+
+.cut { opacity: 0; position: absolute; top: 0; left: -1.5em; }
+.cut { -webkit-transition: opacity 100ms ease-in; }
+
+tr:hover .cut { opacity: 1; }
+table.inventory { clear: both; width: 100%; }
+table.inventory th { font-weight: bold; text-align: center; }
+table.inventory th:nth-child(1) { width: 64%; }
+table.inventory th:nth-child(2) { width: 12%; }
+table.inventory th:nth-child(3) { text-align: right; width: 12%; }
+table.inventory th:nth-child(4) { text-align: right; width: 12%; }
+* content editable */
+
+*[contenteditable] { border-radius: 0.25em; min-width: 1em; outline: 0; }
+
+*[contenteditable] { cursor: pointer; }
+
+*[contenteditable]:hover, *[contenteditable]:focus, td:hover *[contenteditable], td:focus *[contenteditable], img.hover { background: #DEF; box-shadow: 0 0 1em 0.5em #DEF; }
+
+span[contenteditable] { display: inline-block; }
+
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <nav>
+        <h1>Dar Chiq</h1>
+        <ul>
+          <li>Home</li>
+        </ul>
+      </nav>
+      <div class="container"></div>
+    </main>
+    <div class="parent">
+      <p>Informations Client</p>
+      <div>
+        <input type="date">
+        <input id="FD" type="text" class="input" placeholder="Devis ou Facture numero" required />
+        <input id="clientinfo" type="text" class="input" placeholder="Nom du client" required />
+        <input id="teleClient" type="tel" class="input" placeholder="Telephone" />
+        <input type="text" class="input" placeholder="Adresse du client" />
+      </div>
+      <table class="inventory">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Prix unitaire</th>
+            <th>Quantité</th>
+            <th>Montant HT</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+              </span>
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable" 
+              >
+                1</span
+              >
+            </td>
+            <td>
+              <span
+                contenteditable="true"
+                placeholder="descripton"
+                class="editable"
+              >
+                0,00 MAD</span
+              >
+            </td>
+            <td>
+              <span contenteditable="true" placeholder="descripton"> MAD</span>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <a class="add">+</a>
+    </div>
+    <button id="generate" type="submit">Telecharger PDF</button>
+
+    <script>
+      var elem = document.getElementById("generate");
+      elem.onclick = function () {
+        var doc = new jsPDF();
+        //get client info 
+        var DF = document.getElementById('FD').value
+        var nomClient= document.getElementById('clientinfo').value
+        var teleClient = document.getElementById('teleClient').value
+
+        // logo 
+        var img = new Image();
+        img.src = "images/logo.png";
+        doc.addImage(img, "png", 10, 10, 50.27, 32.9);
+        // text Devis 
+        doc.setTextColor("#573a6f");
+        doc.setFontSize(20);
+        doc.text(140, 20, DF);
+        // dar chiq information 
+        doc.setTextColor("#000000");
+        doc.setFontSize(14);
+        doc.text(15,50,'DAR CHIQ')
+        //adress
+        doc.setFontSize(12);
+        doc.text(15,57,'20 adress bormana ')
+        // tele
+        doc.setFontSize(12);
+        doc.text(15,65,'0535704455 ')
+        //nom de client 
+        doc.setFontSize(14);
+        doc.text(140,50, nomClient)
+        // tele de client 
+        doc.setFontSize(12);
+        doc.text(140,57,teleClient)
+
+
+        doc.autoTable( {
+            margin: { top: 100 },
+            body:[
+                [
+                    {
+                        content: "date"
+                    }
+                ]
+            ]
+            
+            
+        })
+
+
+
+
+
+
+
+      
+
+        doc.autoTable({
+          html: "table",
+          styles: {},
+          margin: { top: 10 },
+          fontSize: (number = 12),
+        });
+
+        doc.save(nomClient +"-"+ DF +".pdf");
+      };
+
+
+    </script>
+  </body>
+  <script>
+    /* Functions
+/* ========================================================================== */
+
+function generateTableRow() {
+    var i=0;
+	var emptyColumn = document.createElement('tr');
+    i++;
+	emptyColumn.innerHTML = '<td><a class="cut">-</a></td>' +
+		'<td><span contenteditable></span></td>' +
+		'<td><span contenteditable>0.00</span></td>' +
+		'<td><span contenteditable>0</span></td>' +
+		'<td><span>0.00</span></td>';
+
+	return emptyColumn;
+}
+
+function parseFloatHTML(element) {
+	return parseFloat(element.innerHTML.replace(/[^\d\.\-]+/g, '')) || 0;
+}
+
+function parsePrice(number) {
+	return number.toFixed(2).replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1,');
+}
+/* Update Invoice
+/* ========================================================================== */
+
+function updateInvoice() {
+	var total = 0;
+	var cells, price, total, a, i;
+
+	// update inventory cells
+	// ======================
+
+	for (var a = document.querySelectorAll('table.inventory tbody tr'), i = 0; a[i]; ++i) {
+		// get inventory row cells
+		cells = a[i].querySelectorAll('span:last-child');
+
+		// set price as cell[2] * cell[3]
+		price = parseFloatHTML(cells[1]) * parseFloatHTML(cells[2]);
+
+		// add price to total
+		total += price;
+
+		// set row total
+		cells[3].innerHTML = price;
+	}
+    // update balance cells
+	// ====================
+
+	// get balance cells
+	cells = document.querySelectorAll('table.balance td:last-child span:last-child');
+
+// set total
+cells[0].innerHTML = total;
+
+// set balance and meta balance
+cells[2].innerHTML = document.querySelector('table.meta tr:last-child td:last-child span:last-child').innerHTML = parsePrice(total - parseFloatHTML(cells[1]));
+
+// update prefix formatting
+// ========================
+
+var prefix = document.querySelector('#prefix').innerHTML;
+for (a = document.querySelectorAll('[data-prefix]'), i = 0; a[i]; ++i) a[i].innerHTML = prefix;
+// update price formatting
+	// =======================
+
+	for (a = document.querySelectorAll('span[data-prefix] + span'), i = 0; a[i]; ++i) if (document.activeElement != a[i]) a[i].innerHTML = parsePrice(parseFloatHTML(a[i]));
+ /* On Content Load
+/* ========================================================================== */
+
+function onContentLoad() {
+	updateInvoice();
+
+	var
+	input = document.querySelector('input'),
+	image = document.querySelector('img');
+
+	function onClick(e) {
+		var element = e.target.querySelector('[contenteditable]'), row;
+
+		element && e.target != document.documentElement && e.target != document.body && element.focus();
+
+		if (e.target.matchesSelector('.add')) {
+			document.querySelector('table.inventory tbody').appendChild(generateTableRow());
+		}
+		else if (e.target.className == 'cut') {
+			row = e.target.ancestorQuerySelector('tr');
+
+			row.parentNode.removeChild(row);
+		}
+
+		updateInvoice();
+	}
+
+	function onEnterCancel(e) {
+		e.preventDefault();
+
+		image.classList.add('hover');
+	}
+
+	function onLeaveCancel(e) {
+		e.preventDefault();
+
+		image.classList.remove('hover');
+	}
+
+	function onFileInput(e) {
+		image.classList.remove('hover');
+
+		var
+		reader = new FileReader(),
+		files = e.dataTransfer ? e.dataTransfer.files : e.target.files,
+		i = 0;
+
+		reader.onload = onFileLoad;
+
+		while (files[i]) reader.readAsDataURL(files[i++]);
+	}
+
+	function onFileLoad(e) {
+		var data = e.target.result;
+
+		image.src = data;
+	}
+
+	if (window.addEventListener) {
+		document.addEventListener('click', onClick);
+
+		document.addEventListener('mousewheel', updateNumber);
+		document.addEventListener('keydown', updateNumber);
+
+		document.addEventListener('keydown', updateInvoice);
+		document.addEventListener('keyup', updateInvoice);
+
+		input.addEventListener('focus', onEnterCancel);
+		input.addEventListener('mouseover', onEnterCancel);
+		input.addEventListener('dragover', onEnterCancel);
+		input.addEventListener('dragenter', onEnterCancel);
+
+		input.addEventListener('blur', onLeaveCancel);
+		input.addEventListener('dragleave', onLeaveCancel);
+		input.addEventListener('mouseout', onLeaveCancel);
+
+		input.addEventListener('drop', onFileInput);
+		input.addEventListener('change', onFileInput);
+	}
+}
+
+window.addEventListener && document.addEventListener('DOMContentLoaded', onContentLoad);
+
+    </script>
+</html>
+

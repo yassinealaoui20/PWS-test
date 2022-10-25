@@ -1,0 +1,50 @@
+{"name": "Dar Chiq",
+  "short_name": "Dar Chiq",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#fdfdfd",
+  "theme_color": "#db4938",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "images/Plugin icon - 1-72.png",
+      "type": "image/png", "sizes": "72x72"
+      
+    },
+    {
+      "src": "/images/Plugin icon - 1-96.png",
+      "type": "image/png", "sizes": "96x96"
+      
+    },
+    {
+      "src": "/images/Plugin icon - 1-128.png",
+      "type": "image/png","sizes": "128x128"
+    },
+    {
+      "src": "/images/Plugin icon - 1-144.png",
+      "type": "image/png", "sizes": "144x144"
+      
+    },
+    {
+      "src": "/images/Plugin icon - 1-152.png",
+      "type": "image/png", "sizes": "152x152"
+      
+    },
+    {
+      "src": "images/Plugin icon - 1-192.png",
+      "type": "image/png", "sizes": "192x192"     
+       
+
+    },
+    {
+      "src": "/images/Plugin icon - 1-384.png",
+      "type": "image/png", "sizes": "384x384"
+      
+    },
+    {
+      "src": "/images/Plugin icon - 1-512.png",
+      "type": "image/png", "sizes": "512x512"
+      
+    }
+  ]
+}
